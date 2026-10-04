@@ -12,6 +12,13 @@ const PARTY_FRAME_WIDTH = 96;
 const PARTY_FRAME_HEIGHT = 112;
 const ENEMY_FRAME_SIZE = 128;
 
+/**
+ * Public assets live next to the application entry point.  Using the current
+ * document URL rather than a root-relative path keeps the sprites working on
+ * both localhost and a project-scoped GitHub Pages URL.
+ */
+const graphicAsset = (fileName: string): string => new URL(`assets/graphics/${fileName}`, document.baseURI).toString();
+
 const PARTY_SPRITE_ROWS: Record<PartyMemberId, number> = {
   ash: 0,
   ione: 1,
@@ -93,15 +100,15 @@ export class BattleRenderer {
     if (!context) throw new Error("Canvas 2D is unavailable.");
     this.ctx = context;
     this.ctx.imageSmoothingEnabled = false;
-    this.partySprites.src = "/assets/graphics/battle-party-hd-v1.png";
-    this.noxCarbineFiringSprite.src = "/assets/graphics/battle-nox-carbine-fire-hd-v1.png";
-    this.enemySprites.src = "/assets/graphics/battle-enemies-hd-v1.png";
-    this.towerEnemySprites.src = "/assets/graphics/tower-enemies-hd-v1.png";
-    this.aegisSpecterSprite.src = "/assets/graphics/aegis-specter-hd-v1.png";
-    this.cipherDroneSprite.src = "/assets/graphics/cipher-drone-hd-v1.png";
-    this.archiveCustodianSprite.src = "/assets/graphics/archive-custodian-hd-v1.png";
-    this.southwakeEnemySprites.src = "/assets/graphics/southwake-enemies-hd-v1.png";
-    this.undertideEnemySprites.src = "/assets/graphics/undertide-enemies-hd-v1.png";
+    this.partySprites.src = graphicAsset("battle-party-hd-v1.png");
+    this.noxCarbineFiringSprite.src = graphicAsset("battle-nox-carbine-fire-hd-v1.png");
+    this.enemySprites.src = graphicAsset("battle-enemies-hd-v1.png");
+    this.towerEnemySprites.src = graphicAsset("tower-enemies-hd-v1.png");
+    this.aegisSpecterSprite.src = graphicAsset("aegis-specter-hd-v1.png");
+    this.cipherDroneSprite.src = graphicAsset("cipher-drone-hd-v1.png");
+    this.archiveCustodianSprite.src = graphicAsset("archive-custodian-hd-v1.png");
+    this.southwakeEnemySprites.src = graphicAsset("southwake-enemies-hd-v1.png");
+    this.undertideEnemySprites.src = graphicAsset("undertide-enemies-hd-v1.png");
   }
 
   public render(view: BattleView): void {
