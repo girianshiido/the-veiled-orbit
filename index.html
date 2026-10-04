@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080c19" />
+    <meta name="description" content="A science-fantasy JRPG engine prototype." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <title>Science-Fantasy JRPG — Engine Prototype</title>
+  </head>
+  <body>
+    <main class="game-shell">
+      <section class="console" aria-label="Game screen">
+        <div class="screen-bezel">
+          <canvas id="game" width="640" height="480" aria-label="Game world"></canvas>
+          <div id="loading" class="loading">INITIALIZING WORLD DATA…</div>
+        </div>
+        <div class="status-line" aria-live="polite">
+          <span id="location">LUMEN HOLLOW</span>
+          <span class="status-actions">
+            <button id="audio-menu-toggle" class="audio-control" type="button" aria-expanded="false" aria-controls="audio-settings">AUDIO</button>
+            <span id="save-state">NO MANUAL SAVE</span>
+          </span>
+        </div>
+        <section id="audio-settings" class="audio-settings" aria-label="Audio settings" hidden>
+          <div class="audio-setting-row">
+            <label for="music-control">MUSIC</label>
+            <input id="music-control" type="range" min="0" max="100" step="5" value="75" />
+            <output id="music-volume">75%</output>
+          </div>
+          <div class="audio-setting-row">
+            <label for="sfx-control">SOUND EFFECTS</label>
+            <input id="sfx-control" type="range" min="0" max="100" step="5" value="80" />
+            <output id="sfx-volume">80%</output>
+          </div>
+          <button id="sfx-preview" class="audio-preview" type="button">TEST SOUND</button>
+        </section>
+      </section>
+
+      <footer class="instructions">
+        <span>MOVE · ARROWS / WASD / ZQSD</span>
+        <span>A / CONFIRM · ENTER · B / BACK · SPACE</span>
+        <span>SAVE · VILLAGE MEMORY COUNTER</span>
+      </footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+soundfonts/*.sf2
+soundfonts/*.sf3
+tmp/audio-render/
+.codex-saves/
+tmp/
+__pycache__/
+*.pyc

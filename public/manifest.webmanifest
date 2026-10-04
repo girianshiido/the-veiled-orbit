@@ -1,0 +1,10 @@
+{
+  "name": "The Veiled Orbit — Prototype",
+  "short_name": "Veiled Orbit",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#050711",
+  "theme_color": "#080c19",
+  "orientation": "landscape",
+  "lang": "en"
+}
