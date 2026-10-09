@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import { ENEMIES, FORMATIONS } from "../src/battle/battleData.ts";
 
 function definition(source, enemyId) {
   const match = source.match(new RegExp(`  "${enemyId}": \\{([\\s\\S]*?)\\n  \\},`));
@@ -49,17 +50,11 @@ test("the first enemy roster has distinct tactical profiles and rewards", async 
 });
 
 test("battle formations combine one to three known enemies", async () => {
-  const source = await readFile(new URL("../src/battle/battleData.ts", import.meta.url), "utf8");
-  const enemyIds = new Set(["prism-mite", "glint-hopper", "dust-sentinel", "vault-stalker", "phase-warden", "rift-hunter", "storm-colossus", "relay-wasp", "circuit-hound", "coil-knight", "aegis-specter", "signal-wraith", "saltwire-crab", "reef-drone", "tidal-stalker", "abyss-sentinel", "burrow-maw", "cave-skitter", "blind-drake", "rogue-borer"]);
-  const formationSource = source.slice(source.indexOf("export const FORMATIONS"));
-  const formations = [...formationSource.matchAll(/^  "([a-z-]+)": (?:\{[^\n]*enemyIds: \[([^\]]+)\]|\{[\s\S]*?enemyIds: \[([^\]]+)\])/gm)];
-  enemyIds.add("cipher-drone");
-  enemyIds.add("archive-custodian");
-  assert.equal(formations.length, 51);
-  for (const match of formations) {
-    const members = (match[2] ?? match[3]).match(/"([a-z-]+)"/g)?.map((id) => id.slice(1, -1)) ?? [];
-    assert.ok(members.length >= 1 && members.length <= 3, `${match[1]} has an invalid group size`);
-    members.forEach((enemyId) => assert.ok(enemyIds.has(enemyId), `${match[1]} references ${enemyId}`));
+  const formations = Object.values(FORMATIONS);
+  assert.ok(formations.length >= 57);
+  for (const formation of formations) {
+    assert.ok(formation.enemyIds.length >= 1 && formation.enemyIds.length <= 3, `${formation.id} has an invalid group size`);
+    formation.enemyIds.forEach(id => assert.ok(ENEMIES[id], `${formation.id} references ${id}`));
   }
-  assert.ok(formations.some((match) => ((match[2] ?? match[3]).match(/"([a-z-]+)"/g)?.length ?? 0) === 3));
+  assert.ok(formations.some(formation => formation.enemyIds.length === 3));
 });

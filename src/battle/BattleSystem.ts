@@ -657,6 +657,10 @@ export class BattleSystem {
       this.prepareEnemyIntent(enemy, "PHASE NOVA", "The memory sphere overloads. DEFEND before the next action!");
       return;
     }
+    if (enemy.definition.id === "tempest-regent" && enemy.actionsTaken % 3 === 0) {
+      this.prepareEnemyIntent(enemy, "STORM SURGE", "The turbine rings charge. DEFEND before the next action!");
+      return;
+    }
 
     switch (enemy.definition.behavior) {
       case "disruptor": {

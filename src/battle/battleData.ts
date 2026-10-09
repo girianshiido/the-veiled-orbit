@@ -35,6 +35,9 @@ export interface EnemyDefinition {
 }
 
 export const ENEMIES: Record<EnemyId, EnemyDefinition> = {
+  "gale-drone": { id:"gale-drone",name:"GALE DRONE",maxHp:175,attack:40,defense:16,agility:30,experience:105,credits:115,battleTheme:"violet-grid",accentColor:"#7ddcf1",behavior:"disruptor" },
+  "nimbus-shell": { id:"nimbus-shell",name:"NIMBUS SHELL",maxHp:245,attack:43,defense:24,agility:14,experience:135,credits:145,battleTheme:"violet-grid",accentColor:"#b5cfee",behavior:"protector" },
+  "tempest-regent": { id:"tempest-regent",name:"TEMPEST REGENT",maxHp:980,attack:55,defense:25,agility:20,experience:900,credits:1200,battleTheme:"violet-grid",accentColor:"#8adeef",behavior:"artillery" },
   "cipher-drone": { id: "cipher-drone", name: "CIPHER DRONE", maxHp: 158, attack: 38, defense: 14, agility: 24, experience: 80, credits: 85, battleTheme: "amber-grid", accentColor: "#d4ae66", behavior: "disruptor" },
   "archive-custodian": { id: "archive-custodian", name: "ARCHIVE CUSTODIAN", maxHp: 760, attack: 50, defense: 23, agility: 12, experience: 520, credits: 600, battleTheme: "amber-grid", accentColor: "#70dfd2", behavior: "artillery" },
   "prism-mite": {
@@ -307,6 +310,12 @@ export interface FormationDefinition {
 }
 
 export const FORMATIONS: Record<FormationId, FormationDefinition> = {
+  "gale-drone": { id:"gale-drone",name:"GALE DRONE",enemyIds:["gale-drone"] },
+  "nimbus-shell": { id:"nimbus-shell",name:"NIMBUS SHELL",enemyIds:["nimbus-shell"] },
+  "tempest-regent": { id:"tempest-regent",name:"TEMPEST REGENT",enemyIds:["tempest-regent","gale-drone"],boss:true },
+  "gale-flight": { id:"gale-flight",name:"GALE FLIGHT",enemyIds:["gale-drone","gale-drone"] },
+  "nimbus-patrol": { id:"nimbus-patrol",name:"NIMBUS PATROL",enemyIds:["nimbus-shell","gale-drone"] },
+  "weather-security": { id:"weather-security",name:"WEATHER SECURITY",enemyIds:["nimbus-shell","cipher-drone","gale-drone"] },
   "prism-mite": { id: "prism-mite", name: "PRISM MITE", enemyIds: ["prism-mite"] },
   "glint-hopper": { id: "glint-hopper", name: "GLINT HOPPER", enemyIds: ["glint-hopper"] },
   "dust-sentinel": { id: "dust-sentinel", name: "DUST SENTINEL", enemyIds: ["dust-sentinel"] },

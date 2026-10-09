@@ -23,6 +23,7 @@ export const CARBINE_EQUIPMENT_IDS = [
   "storm-carbine",
   "harbor-carbine",
   "cipher-carbine",
+  "ion-carbine",
 ] as const satisfies readonly EquipmentId[];
 
 export function isCarbineEquipment(equipmentId: EquipmentId | null): boolean {
@@ -32,6 +33,10 @@ export function isCarbineEquipment(equipmentId: EquipmentId | null): boolean {
 }
 
 export const EQUIPMENT: Record<EquipmentId, EquipmentDefinition> = {
+  "thunder-edge": { id:"thunder-edge",name:"THUNDER EDGE",slot:"weapon",attack:24,defense:2,agility:3,price:4200,allowedMembers:["ash"],description:"A grounding blade built for the weather station's emergency crews." },
+  "ion-carbine": { id:"ion-carbine",name:"ION CARBINE",slot:"weapon",attack:33,defense:1,agility:7,price:4400,allowedMembers:["nox"],description:"An ionized rifle that remains accurate through charged air." },
+  "tempest-disc": { id:"tempest-disc",name:"TEMPEST DISC",slot:"weapon",attack:25,defense:1,agility:10,price:4300,allowedMembers:["sera"],description:"A turbine-balanced disc that sweeps the enemy formation." },
+  "pressure-mantle": { id:"pressure-mantle",name:"PRESSURE MANTLE",slot:"armor",attack:0,defense:17,agility:5,price:4500,allowedMembers:["ione","sera"],description:"Flexible pressure fibers that disperse impacts and electrical surges." },
   "aeroweave-mail": { id: "aeroweave-mail", name: "AEROWEAVE MAIL", slot: "armor", attack: 0, defense: 16, agility: 4, price: 3600, allowedMembers: ["ash","nox"], description: "Ceramic flight armor that protects without slowing its wearer." },
   "vector-core": { id: "vector-core", name: "VECTOR CORE", slot: "core", attack: 3, defense: 3, agility: 7, price: 3400, allowedMembers: ["ash","ione","nox","sera"], description: "An inertial stabilizer recovered from the launch service works." },
   "skyglass-guard": { id: "skyglass-guard", name: "SKYGLASS GUARD", slot: "shield", attack: 0, defense: 15, agility: 4, price: 3800, allowedMembers: ["ash","ione","nox","sera"], description: "A light flight-deck guard plate tuned to the atmospheric relay." },

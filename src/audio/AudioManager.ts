@@ -49,7 +49,7 @@ export function musicFileForTheme(theme: Exclude<MusicTheme, "silence">): string
 }
 
 const VILLAGES = new Set(["lumen-hollow", "aster-reach", "vesper-crossing", "tideglass-harbor", "cairn-meridian", "skyglass-relay"]);
-const WORLD_MAPS = new Set(["glass-steppe", "southern-landing", "meridian-basin", "windscar-cliffs"]);
+const WORLD_MAPS = new Set(["glass-steppe", "southern-landing", "meridian-basin", "windscar-cliffs", "stormbreak-ridge"]);
 
 export function musicThemeForMap(mapId: string): MusicTheme {
   if (VILLAGES.has(mapId)) return "village";

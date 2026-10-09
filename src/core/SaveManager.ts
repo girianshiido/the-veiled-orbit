@@ -42,6 +42,7 @@ const EQUIPMENT_IDS = new Set<EquipmentId>([
   "harbor-disc", "tidal-jacket", "undertide-ring", "cavern-weave", "meridian-disc", "meridian-guard",
   "cipher-carbine", "prism-lash", "dawn-saber", "horizon-disc", "aurora-mantle",
   "aeroweave-mail", "vector-core", "skyglass-guard",
+  "thunder-edge", "ion-carbine", "tempest-disc", "pressure-mantle",
 ]);
 const SPELL_IDS = new Set<SpellId>(Object.keys(SPELLS) as SpellId[]);
 

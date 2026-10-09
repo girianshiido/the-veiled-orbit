@@ -28,6 +28,7 @@ export class WorldRenderer {
   private readonly vaultGuardianSprites: HTMLImageElement;
   private readonly controlArrayConsole: HTMLImageElement;
   private readonly archiveCustodian = new Image();
+  private readonly tempestRegent = new Image();
   private readonly cradleShuttle = new Image();
   private readonly lumenHdTiles: HTMLImageElement;
   private readonly worldHdTiles: HTMLImageElement;
@@ -54,6 +55,7 @@ export class WorldRenderer {
     this.controlArrayConsole = new Image();
     this.controlArrayConsole.src = `${import.meta.env.BASE_URL}assets/graphics/control-array-console-hd-v1.png`;
     this.archiveCustodian.src = `${import.meta.env.BASE_URL}assets/graphics/archive-custodian-hd-v1.png`;
+    this.tempestRegent.src = `${import.meta.env.BASE_URL}assets/graphics/tempest-regent-hd-v1.png`;
     this.cradleShuttle.src = `${import.meta.env.BASE_URL}assets/graphics/cradle-shuttle-hd-v1.png`;
     this.lumenHdTiles = new Image();
     this.lumenHdTiles.src = `${import.meta.env.BASE_URL}assets/graphics/lumen-tiles-hd-v1.png`;
@@ -199,6 +201,10 @@ export class WorldRenderer {
   private drawEntity(entity: MapEntity): void {
     const x = Math.round(entity.x);
     const y = Math.round(entity.y);
+    if (entity.spriteId === "tempest-regent" && this.tempestRegent.complete && this.tempestRegent.naturalWidth > 0) {
+      this.ctx.drawImage(this.tempestRegent, 0, 0, 128, 128, x - 20, y - 36, 56, 56);
+      return;
+    }
     if (entity.spriteId === "cradle-shuttle" && this.cradleShuttle.complete && this.cradleShuttle.naturalWidth > 0) {
       this.ctx.drawImage(this.cradleShuttle,0,0,192,160,x-40,y-64,96,80);
       return;
@@ -551,7 +557,7 @@ export class WorldRenderer {
         const lumenTile = mapId === "lumen-hollow"
           ? ({ 14: 0, 15: 1, 9: 6, 12: 7 } as Record<number, number>)[gid]
           : undefined;
-        const worldTile = mapId === "glass-steppe" || mapId === "southern-landing" || mapId === "meridian-basin" || mapId === "windscar-cliffs" || mapId === "skyglass-relay"
+        const worldTile = mapId === "glass-steppe" || mapId === "southern-landing" || mapId === "meridian-basin" || mapId === "windscar-cliffs" || mapId === "skyglass-relay" || mapId === "stormbreak-ridge"
           ? ({ 16: 0, 1: 1, 17: 1, 2: 2, 18: 4, 19: 5, 21: 6, 12: 7 } as Record<number, number>)[gid]
           : undefined;
         const regionalTile = mapId === "aster-reach"
@@ -561,7 +567,7 @@ export class WorldRenderer {
             : mapId === "tideglass-harbor" || mapId === "cairn-meridian" || mapId === "skyglass-relay"
               ? ({ 14: 1, 15: 2 } as Record<number, number>)[gid]
             : undefined;
-        const echoTile = mapId === "echo-vault" || mapId === "undertide-passage" || mapId === "meridian-array" || mapId.includes("control-") || mapId.startsWith("cradle-")
+        const echoTile = mapId === "echo-vault" || mapId === "undertide-passage" || mapId === "meridian-array" || mapId.includes("control-") || mapId.startsWith("cradle-") || mapId.startsWith("weather-")
           ? ({ 6: 0, 13: 1, 12: 2, 10: 3, 5: 4, 8: 5, 4: 6, 7: 7 } as Record<number, number>)[gid]
           : undefined;
         if (lumenTile !== undefined && this.lumenHdTiles.complete && this.lumenHdTiles.naturalWidth > 0) {

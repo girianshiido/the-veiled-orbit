@@ -67,6 +67,7 @@ const LABYRINTH_MAPS = new Set([
   "meridian-array",
   "central-control-entry", "central-control-galleries", "central-control-archives", "central-control-core",
   "cradle-workshop", "cradle-hangar",
+  "weather-dome", "weather-eye",
 ]);
 const LABYRINTH_RETURN_DESTINATIONS: Partial<Record<string, {
   mapId: string;
@@ -91,6 +92,8 @@ const LABYRINTH_RETURN_DESTINATIONS: Partial<Record<string, {
   "central-control-core": { mapId: "glass-steppe", x: 28, y: 80, direction: "down" },
   "cradle-workshop": { mapId: "windscar-cliffs", x: 23, y: 4, direction: "down" },
   "cradle-hangar": { mapId: "windscar-cliffs", x: 23, y: 4, direction: "down" },
+  "weather-dome": { mapId: "stormbreak-ridge", x: 36, y: 4, direction: "down" },
+  "weather-eye": { mapId: "stormbreak-ridge", x: 36, y: 4, direction: "down" },
 };
 const TOWN_SERVICE_KINDS = new Set([
   "inn",
@@ -103,6 +106,9 @@ const TOWN_SERVICE_KINDS = new Set([
   "party-house",
 ]);
 const DEBUG_SPAWNS: Record<string, { x: number; y: number; direction: PlayerState["direction"] }> = {
+  "stormbreak-ridge": { x: 3, y: 29, direction: "right" },
+  "weather-dome": { x: 22, y: 32, direction: "up" },
+  "weather-eye": { x: 15, y: 24, direction: "up" },
   "relay-garden": { x: 10, y: 11, direction: "up" },
   "archive-hall": { x: 10, y: 12, direction: "up" },
   "glass-steppe": { x: 6, y: 8, direction: "down" },
@@ -254,7 +260,7 @@ export class WorldScene {
       this.saveElement.textContent = "NO MANUAL SAVE";
     }
     this.worldFlags.add("village.lumen-hollow.visited");
-    if (debugMap === "windscar-cliffs" || debugMap?.startsWith("cradle-") || debugMap === "skyglass-relay") {
+    if (debugMap === "windscar-cliffs" || debugMap?.startsWith("cradle-") || debugMap === "skyglass-relay" || debugMap === "stormbreak-ridge" || debugMap?.startsWith("weather-")) {
       this.worldFlags.add("quest.central-archive-read");
       if (debugMap === "cradle-hangar" || debugMap === "skyglass-relay") {
         this.worldFlags.add("quest.cradle-coupler-recovered");
@@ -263,6 +269,15 @@ export class WorldScene {
       if (debugMap === "skyglass-relay") {
         this.worldFlags.add("cradle.warden-defeated");
         this.worldFlags.add("quest.launch-cradle-online");
+      }
+    }
+    if (debugMap === "stormbreak-ridge" || debugMap?.startsWith("weather-")) {
+      this.worldFlags.add("quest.launch-cradle-online");
+      this.worldFlags.add("village.skyglass-relay.visited");
+      if (debugMap === "weather-eye") {
+        this.worldFlags.add("weather.pressure-stable");
+        this.worldFlags.add("weather.charge-stable");
+        synchronizeCentralQuestFlags(this.worldFlags);
       }
     }
     if (debugMap?.startsWith("central-control-")) {

@@ -111,5 +111,8 @@ async function addSouthernAccess() {
 export async function generateLaunchChapter() {
   for(const [id,map] of [["windscar-cliffs",cliffs()],["cradle-workshop",workshop()],["cradle-hangar",hangar()],["skyglass-relay",skyglass()]]) await writeMap(id,map);
   await addSouthernAccess();
+  // Keep the eastern continuation when regenerating the launch outpost.
+  const { generateWeatherChapter } = await import('./generate-weather-chapter.mjs');
+  await generateWeatherChapter();
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href) await generateLaunchChapter();

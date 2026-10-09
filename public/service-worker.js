@@ -1,4 +1,4 @@
-const CACHE_NAME = "veiled-orbit-pages-battle-sprites-v72";
+const CACHE_NAME = "veiled-orbit-weather-dome-v73";
 const MUSIC_FILES = [
   "armor-shop", "battle", "dungeon", "game-over", "inn", "item-shop",
   "party-house", "revival-shop", "save-shop", "teleport", "title",

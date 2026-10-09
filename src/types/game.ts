@@ -85,7 +85,8 @@ export type EquipmentId =
   | "meridian-disc"
   | "meridian-guard"
   | "cipher-carbine" | "prism-lash" | "dawn-saber" | "horizon-disc" | "aurora-mantle"
-  | "aeroweave-mail" | "vector-core" | "skyglass-guard";
+  | "aeroweave-mail" | "vector-core" | "skyglass-guard"
+  | "thunder-edge" | "ion-carbine" | "tempest-disc" | "pressure-mantle";
 export type EnemyId =
   | "prism-mite"
   | "glint-hopper"
@@ -106,7 +107,8 @@ export type EnemyId =
   | "burrow-maw"
   | "cave-skitter"
   | "blind-drake"
-  | "rogue-borer" | "cipher-drone" | "archive-custodian";
+  | "rogue-borer" | "cipher-drone" | "archive-custodian"
+  | "gale-drone" | "nimbus-shell" | "tempest-regent";
 export type FormationId = EnemyId
   | "mite-cluster"
   | "glint-pair"
@@ -133,7 +135,8 @@ export type FormationId = EnemyId
   | "skitter-nest"
   | "undertide-pack"
   | "deep-burrow"
-  | "borer-escort" | "cipher-patrol" | "cipher-wing" | "cradle-warden";
+  | "borer-escort" | "cipher-patrol" | "cipher-wing" | "cradle-warden"
+  | "gale-flight" | "nimbus-patrol" | "weather-security";
 
 export interface PartyMemberProgress {
   id: PartyMemberId;

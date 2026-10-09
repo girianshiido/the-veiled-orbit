@@ -51,6 +51,9 @@ const MAP_FILES: Record<string, string> = {
   "cradle-workshop": "cradle-workshop.json",
   "cradle-hangar": "cradle-hangar.json",
   "skyglass-relay": "skyglass-relay.json",
+  "stormbreak-ridge": "stormbreak-ridge.json",
+  "weather-dome": "weather-dome.json",
+  "weather-eye": "weather-eye.json",
 };
 
 function propertyValue<T extends string | number | boolean>(

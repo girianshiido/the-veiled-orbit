@@ -2,8 +2,19 @@ import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
+import { DIALOGUES } from "../src/dialogue/dialogues.ts";
 
 const mapDirectory = new URL("../public/assets/maps/", import.meta.url);
+
+test("every playable map is registered with the runtime loader", async () => {
+  const source = await readFile(new URL("../src/world/MapLoader.ts", import.meta.url), "utf8");
+  const registry = source.match(/const MAP_FILES[^=]*=\s*\{([\s\S]*?)\};/)?.[1];
+  assert.ok(registry, "the runtime map registry must exist");
+  const files = new Map([...registry.matchAll(/"([a-z0-9-]+)":\s*"([^"]+)"/g)].map((match) => [match[1], match[2]]));
+  for (const file of (await readdir(mapDirectory)).filter((name) => name.endsWith(".json"))) {
+    assert.equal(files.get(file.slice(0, -5)), file, `${file} cannot be loaded by the game`);
+  }
+});
 
 test("all maps use the engine layer contract", async () => {
   const files = (await readdir(mapDirectory)).filter((file) => file.endsWith(".json"));
@@ -895,10 +906,7 @@ test("the mayor, Mira and her visible guardian form a complete rescue quest", as
 });
 
 test("all narrative triggers resolve to existing English dialogue nodes", async () => {
-  const dialogueSource = await readFile(new URL("../src/dialogue/dialogues.ts", import.meta.url), "utf8");
-  const dialogueIds = new Set(
-    [...dialogueSource.matchAll(/^  "([^"]+)": \{/gm)].map((match) => match[1]),
-  );
+  const dialogueIds = new Set(Object.keys(DIALOGUES));
   const files = (await readdir(mapDirectory)).filter((file) => file.endsWith(".json"));
 
   for (const file of files) {

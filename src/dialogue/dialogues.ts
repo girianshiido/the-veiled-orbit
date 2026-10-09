@@ -1,3 +1,5 @@
+import { WEATHER_DIALOGUES } from './weatherDialogues.ts';
+
 export interface DialogueChoice {
   label: string;
   next?: string;
@@ -14,6 +16,7 @@ export interface DialogueNode {
 }
 
 export const DIALOGUES: Readonly<Record<string, DialogueNode>> = {
+  ...WEATHER_DIALOGUES,
   "meridian-key-recovered": { id: "meridian-key-recovered", speaker: "NOX", text: "This is not another damaged relay. It is an authorization key for the sealed tower beside Vesper Crossing. I can copy its carrier without shutting down the basin.", next: "meridian-key-route" },
   "meridian-key-route": { id: "meridian-key-route", speaker: "SERA", text: "Then the guarded tower is our next stop. Ors can take us back across the water, or we can use a Transit Beacon outside the array. Tell Rhea what we found." },
   "cairn-provost-key": { id: "cairn-provost-key", speaker: "PROVOST HALE", text: "The Meridian key? Our records call the central tower a shelter archive. Take the signal back to Vesper Crossing. Whatever damaged our array may have been trying to keep that archive closed." },
@@ -55,8 +58,8 @@ export const DIALOGUES: Readonly<Record<string, DialogueNode>> = {
   "skyglass-arrival-transit": { id: "skyglass-arrival-transit", speaker: "RELAY KEEPER ELIAN", text: "The transit beacon connects to the lower towns. You can also return by shuttle whenever you wish." },
   "skyglass-keeper": { id: "skyglass-keeper", speaker: "RELAY KEEPER ELIAN", text: "The launch works fell silent with the false purge order. We could see the towns' lights but could not reach them.", next: "skyglass-keeper-services" },
   "skyglass-keeper-services": { id: "skyglass-keeper-services", speaker: "RELAY KEEPER ELIAN", text: "Your shuttle crosses the storm belt in either direction. Our memory archive is free. Save there before another expedition." },
-  "skyglass-observer": { id: "skyglass-observer", speaker: "OBSERVER SEN", text: "The purge carrier passed through the weather dome beyond the eastern ridge. A cyclone warning keeps its gates sealed.", next: "skyglass-observer-records" },
-  "skyglass-observer-records": { id: "skyglass-observer-records", speaker: "OBSERVER SEN", text: "I am searching the records for a safe corridor. Whoever sent that signal knew our entire shelter network." },
+  "skyglass-observer": { id: "skyglass-observer", speaker: "OBSERVER SEN", text: "The purge carrier passed through the weather dome. Reopening our supply route let me find a quiet corridor along the eastern ridge.", next: "skyglass-observer-records" },
+  "skyglass-observer-records": { id: "skyglass-observer-records", speaker: "OBSERVER SEN", text: "Take the eastern road. Restore both dome regulators to reach its command record. Whoever sent that signal knew our entire shelter network." },
   "skyglass-technician": { id: "skyglass-technician", speaker: "TECHNICIAN MARA", text: "Our transit beacon links to the towns you know. Now their gates and your Transit Beacons can bring you back here.", next: "skyglass-technician-shuttle" },
   "skyglass-technician-shuttle": { id: "skyglass-technician-shuttle", speaker: "TECHNICIAN MARA", text: "The shuttle stays on the landing deck, even if you teleport away. Its return route to Southwake is always available." },
   "lumen-arrival": {
