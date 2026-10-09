@@ -33,6 +33,10 @@ export function isCarbineEquipment(equipmentId: EquipmentId | null): boolean {
 }
 
 export const EQUIPMENT: Record<EquipmentId, EquipmentDefinition> = {
+  "crown-lash": { id: "crown-lash", name: "CROWN LASH", slot: "weapon", attack: 22, defense: 2, agility: 6, price: 4700, allowedMembers: ["ione"], description: "An archive conductor that guides Ione's strikes without slowing her casting." },
+  "oath-mail": { id: "oath-mail", name: "OATH MAIL", slot: "armor", attack: 0, defense: 19, agility: 4, price: 4900, allowedMembers: ["ash", "nox"], description: "Layered ivory command armor made for shelter defenders." },
+  "witness-core": { id: "witness-core", name: "WITNESS CORE", slot: "core", attack: 4, defense: 5, agility: 8, price: 4800, allowedMembers: ["ash", "ione", "nox", "sera"], description: "A signed archive crystal that reinforces its living bearer." },
+  "crown-aegis": { id: "crown-aegis", name: "CROWN AEGIS", slot: "shield", attack: 0, defense: 18, agility: 5, price: 5100, allowedMembers: ["ash", "ione", "nox", "sera"], description: "A command seal reclaimed from the Hall of Judgment." },
   "thunder-edge": { id:"thunder-edge",name:"THUNDER EDGE",slot:"weapon",attack:24,defense:2,agility:3,price:4200,allowedMembers:["ash"],description:"A grounding blade built for the weather station's emergency crews." },
   "ion-carbine": { id:"ion-carbine",name:"ION CARBINE",slot:"weapon",attack:33,defense:1,agility:7,price:4400,allowedMembers:["nox"],description:"An ionized rifle that remains accurate through charged air." },
   "tempest-disc": { id:"tempest-disc",name:"TEMPEST DISC",slot:"weapon",attack:25,defense:1,agility:10,price:4300,allowedMembers:["sera"],description:"A turbine-balanced disc that sweeps the enemy formation." },

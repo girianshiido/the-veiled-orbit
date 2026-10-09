@@ -86,7 +86,8 @@ export type EquipmentId =
   | "meridian-guard"
   | "cipher-carbine" | "prism-lash" | "dawn-saber" | "horizon-disc" | "aurora-mantle"
   | "aeroweave-mail" | "vector-core" | "skyglass-guard"
-  | "thunder-edge" | "ion-carbine" | "tempest-disc" | "pressure-mantle";
+  | "thunder-edge" | "ion-carbine" | "tempest-disc" | "pressure-mantle"
+  | "crown-lash" | "oath-mail" | "witness-core" | "crown-aegis";
 export type EnemyId =
   | "prism-mite"
   | "glint-hopper"
@@ -108,7 +109,8 @@ export type EnemyId =
   | "cave-skitter"
   | "blind-drake"
   | "rogue-borer" | "cipher-drone" | "archive-custodian"
-  | "gale-drone" | "nimbus-shell" | "tempest-regent";
+  | "gale-drone" | "nimbus-shell" | "tempest-regent"
+  | "crown-seeker" | "oath-sentinel" | "crown-judicator";
 export type FormationId = EnemyId
   | "mite-cluster"
   | "glint-pair"
@@ -136,7 +138,8 @@ export type FormationId = EnemyId
   | "undertide-pack"
   | "deep-burrow"
   | "borer-escort" | "cipher-patrol" | "cipher-wing" | "cradle-warden"
-  | "gale-flight" | "nimbus-patrol" | "weather-security";
+  | "gale-flight" | "nimbus-patrol" | "weather-security"
+  | "crown-patrol" | "crown-enforcers";
 
 export interface PartyMemberProgress {
   id: PartyMemberId;
@@ -262,7 +265,8 @@ export type InteractionKind =
   | "teleport"
   | "party-house"
   | "barrier"
-  | "control-console";
+  | "control-console"
+  | "archive-authenticator";
 
 export interface Interaction {
   id: number;

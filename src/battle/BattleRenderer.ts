@@ -43,7 +43,7 @@ const TOWER_ENEMY_SPRITE_INDEX = {
   "signal-wraith": 3,
 } as const;
 
-const SPECIAL_TOWER_ENEMY_SPRITES = new Set<EnemyId>(["aegis-specter", "cipher-drone", "archive-custodian", "gale-drone", "nimbus-shell", "tempest-regent"]);
+const SPECIAL_TOWER_ENEMY_SPRITES = new Set<EnemyId>(["aegis-specter", "cipher-drone", "archive-custodian", "gale-drone", "nimbus-shell", "tempest-regent", "crown-seeker", "oath-sentinel", "crown-judicator"]);
 
 const SOUTHWAKE_ENEMY_SPRITE_INDEX = {
   "saltwire-crab": 0,
@@ -94,6 +94,7 @@ export class BattleRenderer {
   private readonly cipherDroneSprite = new Image();
   private readonly archiveCustodianSprite = new Image();
   private readonly tempestRegentSprite = new Image();
+  private readonly crownJudicatorSprite = new Image();
   private readonly southwakeEnemySprites = new Image();
   private readonly undertideEnemySprites = new Image();
 
@@ -110,6 +111,7 @@ export class BattleRenderer {
     this.cipherDroneSprite.src = graphicAsset("cipher-drone-hd-v1.png");
     this.archiveCustodianSprite.src = graphicAsset("archive-custodian-hd-v1.png");
     this.tempestRegentSprite.src = graphicAsset("tempest-regent-hd-v1.png");
+    this.crownJudicatorSprite.src = graphicAsset("crown-judicator-hd-v1.png");
     this.southwakeEnemySprites.src = graphicAsset("southwake-enemies-hd-v1.png");
     this.undertideEnemySprites.src = graphicAsset("undertide-enemies-hd-v1.png");
   }
@@ -254,8 +256,9 @@ export class BattleRenderer {
 
   private drawEnemySprite(enemyId: EnemyId, flash: boolean): boolean {
     if (SPECIAL_TOWER_ENEMY_SPRITES.has(enemyId)) {
-      const sprite = enemyId === "tempest-regent" ? this.tempestRegentSprite
-        : enemyId === "cipher-drone" || enemyId === "gale-drone" ? this.cipherDroneSprite
+      const sprite = enemyId === "crown-judicator" ? this.crownJudicatorSprite
+        : enemyId === "tempest-regent" ? this.tempestRegentSprite
+        : enemyId === "cipher-drone" || enemyId === "gale-drone" || enemyId === "crown-seeker" ? this.cipherDroneSprite
         : enemyId === "archive-custodian" ? this.archiveCustodianSprite : this.aegisSpecterSprite;
       if (!sprite.complete || sprite.naturalWidth === 0) return false;
       this.ctx.save();
@@ -266,7 +269,9 @@ export class BattleRenderer {
       if (flash) this.ctx.filter = "brightness(2.8) saturate(0.15)";
       else if (enemyId === "gale-drone") this.ctx.filter = "hue-rotate(150deg) saturate(0.8)";
       else if (enemyId === "nimbus-shell") this.ctx.filter = "hue-rotate(40deg) saturate(0.65) brightness(1.2)";
-      if (enemyId === "aegis-specter" || enemyId === "nimbus-shell") this.ctx.drawImage(sprite, 0, 0, 128, 128, 160, 22, 120, 120);
+      else if (enemyId === "crown-seeker") this.ctx.filter = "sepia(0.65) saturate(0.9)";
+      else if (enemyId === "oath-sentinel") this.ctx.filter = "sepia(0.55) saturate(0.7) brightness(1.15)";
+      if (enemyId === "aegis-specter" || enemyId === "nimbus-shell" || enemyId === "oath-sentinel") this.ctx.drawImage(sprite, 0, 0, 128, 128, 160, 22, 120, 120);
       else this.ctx.drawImage(sprite, 0, 0, 128, 128, 160, 7, 120, 120);
       this.ctx.restore();
       return true;

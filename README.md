@@ -4,9 +4,17 @@ An original browser JRPG engine prototype. The game is written in strict TypeScr
 
 The current chapter continues beyond Southwake Isle, Sera's recruitment, Undertide Passage, Cairn Meridian and the Meridian Array. Recovering the Meridian authorization signal opens the Central Control Tower near Vesper Crossing. Reading its sealed archive opens Windscar Cliffs west of Tideglass Harbor. The Launch Cradle has a branching maintenance maze, a coupler/reactor puzzle, three equipment lockers and a guardian with drone support. Restoring the flight computer enables free reversible atmospheric travel to Skyglass Relay, a safe outpost with memory, inn, clinic, supplies and transit. Its eastern road now reaches Stormbreak Ridge and the Weather Dome, where two regulators unlock the Tempest Regent and the original shelter warning. Four characters remain available; no fifth companion is introduced. Original generated art and generation prompts are kept under `art/source/`.
 
+## Crown Array chapter
+
+The eastern continuation is now playable. After recovering the original Weather Dome warning, speak with Observer Sen and follow Stormbreak Ridge east past the dome. The Broken Causeway leads to the Palimpsest Archives: a large branching floor with three conflicting testimonies. Read all three, then authenticate the foundation charter at the central terminal. Wrong answers leave the puzzle and records intact, with no penalty or forced battle. The signed shelter charter opens the Hall of Judgment; the Crown Judicator disputes living witnesses and announces VERDICT PULSE one action before its group strike.
+
+The causeway and archive offer Crown Seeker and Oath Sentinel variants, with distinct controller and armor-piercing behavior. Optional lockers contain Crown Lash for Ione, Oath Mail for Ash or Nox, and one Witness Core for any member. Defeating the original illustrated guardian unlocks a Crown Aegis and the command terminal. Restore the shelter network, then return to Sen or Rhea with the Orison address. Orison Depths is a future destination; there is still no fifth companion.
+
+Both Crown floors extract by Return Beacon to the Broken Causeway outside the entire labyrinth. All transitions remain retraceable, and the final hall has no random encounters. Manual saving still requires returning to a village memory counter. Existing schema-13 slots, gear and progress remain compatible. Regenerate with `node scripts/generate-crown-chapter.mjs`; weather/launch/central regeneration retains this continuation. Original guardian source, final prompt and normalization script are checked in under `art/source/` and `scripts/`.
+
 ## Weather Dome chapter
 
-From Skyglass, talk to Observer Sen and take the eastern road. Stormbreak Ridge winds through mountain shelves to a two-floor weather station. The western pressure regulator and eastern charge regulator can be repaired in either order, persist across visits, and are both required for the upper lift. Three optional lockers contain Thunder Edge, Ion Carbine and Tempest Disc. The peaceful upper floor holds Tempest Regent with a Gale Drone escort; STORM SURGE is announced a full action in advance. Defeating it releases the original command record and a Pressure Mantle locker. Reading the record ends this chapter; Sen and Rhea acknowledge the evidence, while the Crown Array remains a future destination.
+From Skyglass, talk to Observer Sen and take the eastern road. Stormbreak Ridge winds through mountain shelves to a two-floor weather station. The western pressure regulator and eastern charge regulator can be repaired in either order, persist across visits, and are both required for the upper lift. Three optional lockers contain Thunder Edge, Ion Carbine and Tempest Disc. The peaceful upper floor holds Tempest Regent with a Gale Drone escort; STORM SURGE is announced a full action in advance. Defeating it releases the original command record and a Pressure Mantle locker. Reading the record opens the Crown causeway; Sen and Rhea acknowledge the evidence.
 
 Return Beacons from either weather floor extract to the ridge outside the entire station. The ridge and every floor remain retraceable before completion. Existing manual save keys and schema stay at version 13, with the four equipment IDs accepted during migration. The boss has original transparent artwork; Gale Drone and Nimbus Shell use recolored existing machine sprites. Regenerate with `node scripts/generate-weather-chapter.mjs`; launch-chapter regeneration also retains this extension.
 
@@ -105,6 +113,8 @@ Return Beacons from either launch floor extract to Windscar Cliffs, outside the 
 - `?debugMap=cradle-workshop&debugParty=quartet&debugLevel=23` previews the maintenance maze.
 - `?debugBattle=cradle-warden&debugParty=quartet&debugLevel=24` previews the hangar guardian and drone.
 - `?debugMap=skyglass-relay&debugParty=quartet&debugLevel=24` previews the relay and enables return-shuttle travel.
+- `?debugMap=crown-archives&debugParty=quartet&debugLevel=26` previews the three-testimony puzzle.
+- `?debugMap=crown-sanctum&debugParty=quartet&debugLevel=26` previews the Hall of Judgment without changing manual saves.
 
 Debug sessions never write to the manual save slots.
 

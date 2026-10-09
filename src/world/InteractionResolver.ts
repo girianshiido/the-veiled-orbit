@@ -12,7 +12,7 @@ export function resolveInteraction(
   inventory: InventoryState,
   worldFlags: Set<string>,
 ): InteractionOutcome {
-  if (interaction.kind === "control-console") {
+  if (interaction.kind === "control-console" || interaction.kind === "archive-authenticator") {
     if (worldFlags.has(interaction.flag)) {
       return { speaker: "CONTROL ARRAY", text: interaction.restoredText || "The restored array hums steadily. Southern transmission is stable.", changed: false };
     }

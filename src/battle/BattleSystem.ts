@@ -38,7 +38,7 @@ interface EnemyCombatant {
   intent: EnemyIntent | null;
 }
 
-type EnemyIntent = "BLACKOUT PULSE" | "PHASE NOVA" | "STORM SURGE";
+type EnemyIntent = "BLACKOUT PULSE" | "PHASE NOVA" | "STORM SURGE" | "VERDICT PULSE";
 
 export interface BattleStatus {
   id: BattleStatusId;
@@ -629,6 +629,11 @@ export class BattleSystem {
     }
     enemy.actionsTaken += 1;
 
+    if (enemy.intent === "VERDICT PULSE") {
+      enemy.intent = null;
+      this.performGroupAttack(enemy, "VERDICT PULSE", 0.88, "storm");
+      return;
+    }
     if (enemy.intent === "STORM SURGE") {
       enemy.intent = null;
       this.performGroupAttack(enemy, "STORM SURGE", 0.82, "storm");
@@ -659,6 +664,13 @@ export class BattleSystem {
     }
     if (enemy.definition.id === "tempest-regent" && enemy.actionsTaken % 3 === 0) {
       this.prepareEnemyIntent(enemy, "STORM SURGE", "The turbine rings charge. DEFEND before the next action!");
+      return;
+    }
+
+    if (enemy.definition.id === "crown-judicator") {
+      if (enemy.actionsTaken % 4 === 0) this.prepareEnemyIntent(enemy, "VERDICT PULSE", "The crown opens. DEFEND before the next action!");
+      else if (enemy.actionsTaken % 4 === 3) this.performEnemyDisruption(enemy, this.strongestMember());
+      else this.performEnemyStrike(enemy, this.randomLivingMember(), "IVORY LANCE", 1.05, 0.2);
       return;
     }
 

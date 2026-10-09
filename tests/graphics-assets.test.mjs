@@ -60,6 +60,8 @@ test("the graphic study uses exact production sprite and atlas dimensions", asyn
   assert.deepEqual(await pngDimensions("lumen-armor-shop-hd-v1.png"), [160, 160]);
   assert.deepEqual(await pngDimensions("village-npcs-hd-v3.png"), [192, 448]);
   assert.deepEqual(await pngDimensions("archive-custodian-hd-v1.png"), [128, 128]);
+  assert.deepEqual(await pngDimensions("tempest-regent-hd-v1.png"), [128, 128]);
+  assert.deepEqual(await pngDimensions("crown-judicator-hd-v1.png"), [128, 128]);
   assert.deepEqual(await pngDimensions("cipher-drone-hd-v1.png"), [128, 128]);
   assert.deepEqual(await pngDimensions("village-npcs-regional-hd-v3.png"), [192, 256]);
   assert.deepEqual(await pngDimensions("service-portraits-hd-v1.png"), [1536, 864]);

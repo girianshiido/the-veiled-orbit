@@ -35,6 +35,9 @@ export interface EnemyDefinition {
 }
 
 export const ENEMIES: Record<EnemyId, EnemyDefinition> = {
+  "crown-seeker": { id: "crown-seeker", name: "CROWN SEEKER", maxHp: 210, attack: 45, defense: 18, agility: 32, experience: 130, credits: 145, battleTheme: "amber-grid", accentColor: "#e8bf72", behavior: "controller" },
+  "oath-sentinel": { id: "oath-sentinel", name: "OATH SENTINEL", maxHp: 285, attack: 48, defense: 27, agility: 18, experience: 165, credits: 175, battleTheme: "amber-grid", accentColor: "#e7d9ad", behavior: "piercer" },
+  "crown-judicator": { id: "crown-judicator", name: "CROWN JUDICATOR", maxHp: 1250, attack: 58, defense: 28, agility: 23, experience: 1100, credits: 1600, battleTheme: "amber-grid", accentColor: "#edbd62", behavior: "controller" },
   "gale-drone": { id:"gale-drone",name:"GALE DRONE",maxHp:175,attack:40,defense:16,agility:30,experience:105,credits:115,battleTheme:"violet-grid",accentColor:"#7ddcf1",behavior:"disruptor" },
   "nimbus-shell": { id:"nimbus-shell",name:"NIMBUS SHELL",maxHp:245,attack:43,defense:24,agility:14,experience:135,credits:145,battleTheme:"violet-grid",accentColor:"#b5cfee",behavior:"protector" },
   "tempest-regent": { id:"tempest-regent",name:"TEMPEST REGENT",maxHp:980,attack:55,defense:25,agility:20,experience:900,credits:1200,battleTheme:"violet-grid",accentColor:"#8adeef",behavior:"artillery" },
@@ -310,6 +313,11 @@ export interface FormationDefinition {
 }
 
 export const FORMATIONS: Record<FormationId, FormationDefinition> = {
+  "crown-seeker": { id: "crown-seeker", name: "CROWN SEEKER", enemyIds: ["crown-seeker"] },
+  "oath-sentinel": { id: "oath-sentinel", name: "OATH SENTINEL", enemyIds: ["oath-sentinel"] },
+  "crown-judicator": { id: "crown-judicator", name: "CROWN JUDICATOR", enemyIds: ["crown-judicator"], boss: true },
+  "crown-patrol": { id: "crown-patrol", name: "CROWN PATROL", enemyIds: ["crown-seeker", "gale-drone"] },
+  "crown-enforcers": { id: "crown-enforcers", name: "CROWN ENFORCERS", enemyIds: ["oath-sentinel", "crown-seeker"] },
   "gale-drone": { id:"gale-drone",name:"GALE DRONE",enemyIds:["gale-drone"] },
   "nimbus-shell": { id:"nimbus-shell",name:"NIMBUS SHELL",enemyIds:["nimbus-shell"] },
   "tempest-regent": { id:"tempest-regent",name:"TEMPEST REGENT",enemyIds:["tempest-regent","gale-drone"],boss:true },

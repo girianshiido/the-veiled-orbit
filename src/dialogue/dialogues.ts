@@ -1,4 +1,5 @@
 import { WEATHER_DIALOGUES } from './weatherDialogues.ts';
+import { CROWN_DIALOGUES } from './crownDialogues.ts';
 
 export interface DialogueChoice {
   label: string;
@@ -17,6 +18,7 @@ export interface DialogueNode {
 
 export const DIALOGUES: Readonly<Record<string, DialogueNode>> = {
   ...WEATHER_DIALOGUES,
+  ...CROWN_DIALOGUES,
   "meridian-key-recovered": { id: "meridian-key-recovered", speaker: "NOX", text: "This is not another damaged relay. It is an authorization key for the sealed tower beside Vesper Crossing. I can copy its carrier without shutting down the basin.", next: "meridian-key-route" },
   "meridian-key-route": { id: "meridian-key-route", speaker: "SERA", text: "Then the guarded tower is our next stop. Ors can take us back across the water, or we can use a Transit Beacon outside the array. Tell Rhea what we found." },
   "cairn-provost-key": { id: "cairn-provost-key", speaker: "PROVOST HALE", text: "The Meridian key? Our records call the central tower a shelter archive. Take the signal back to Vesper Crossing. Whatever damaged our array may have been trying to keep that archive closed." },

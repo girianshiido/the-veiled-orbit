@@ -16,6 +16,6 @@ export const WEATHER_DIALOGUES: Readonly<Record<string, DialogueNode>> = {
   'weather-record-nox': {id:'weather-record-nox',speaker:'NOX',text:'This record proves the warning was altered. I have copied the original and disabled the hostile storm targets. Take it back to Sen.',next:'weather-record-ash'},
   'weather-record-ash': {id:'weather-record-ash',speaker:'ASH',text:'We have a name and a source. First, let us tell Skyglass their homes are safe. Then we find a route to the Crown Array.'},
   'skyglass-observer-after': {id:'skyglass-observer-after',speaker:'OBSERVER SEN',text:'The storms are breaking! Your record names the Crown Array beyond our eastern charts. I will compare its carrier with the old observation logs.',next:'skyglass-observer-next'},
-  'skyglass-observer-next': {id:'skyglass-observer-next',speaker:'OBSERVER SEN',text:'That route is not open yet. Rest here, keep your records, and return to the lower towns whenever you wish. The dome no longer threatens them.'},
+  'skyglass-observer-next': {id:'skyglass-observer-next',speaker:'OBSERVER SEN',text:'Your weather carrier clears the causeway. Go east along Stormbreak Ridge, beyond the dome, to the Crown Array. Find its original signed charter.'},
   'rhea-weather-after': {id:'rhea-weather-after',speaker:'ENGINEER RHEA',text:'The Curator... that signature appears on the original shelter plans. Keep the unaltered warning safe. Sen may be able to trace the Crown Array.'},
 };

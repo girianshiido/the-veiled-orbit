@@ -68,6 +68,7 @@ const LABYRINTH_MAPS = new Set([
   "central-control-entry", "central-control-galleries", "central-control-archives", "central-control-core",
   "cradle-workshop", "cradle-hangar",
   "weather-dome", "weather-eye",
+  "crown-archives", "crown-sanctum",
 ]);
 const LABYRINTH_RETURN_DESTINATIONS: Partial<Record<string, {
   mapId: string;
@@ -94,6 +95,8 @@ const LABYRINTH_RETURN_DESTINATIONS: Partial<Record<string, {
   "cradle-hangar": { mapId: "windscar-cliffs", x: 23, y: 4, direction: "down" },
   "weather-dome": { mapId: "stormbreak-ridge", x: 36, y: 4, direction: "down" },
   "weather-eye": { mapId: "stormbreak-ridge", x: 36, y: 4, direction: "down" },
+  "crown-archives": { mapId: "crown-causeway", x: 39, y: 4, direction: "down" },
+  "crown-sanctum": { mapId: "crown-causeway", x: 39, y: 4, direction: "down" },
 };
 const TOWN_SERVICE_KINDS = new Set([
   "inn",
@@ -106,6 +109,9 @@ const TOWN_SERVICE_KINDS = new Set([
   "party-house",
 ]);
 const DEBUG_SPAWNS: Record<string, { x: number; y: number; direction: PlayerState["direction"] }> = {
+  "crown-causeway": { x: 3, y: 30, direction: "right" },
+  "crown-archives": { x: 24, y: 36, direction: "up" },
+  "crown-sanctum": { x: 16, y: 26, direction: "up" },
   "stormbreak-ridge": { x: 3, y: 29, direction: "right" },
   "weather-dome": { x: 22, y: 32, direction: "up" },
   "weather-eye": { x: 15, y: 24, direction: "up" },
@@ -269,6 +275,15 @@ export class WorldScene {
       if (debugMap === "skyglass-relay") {
         this.worldFlags.add("cradle.warden-defeated");
         this.worldFlags.add("quest.launch-cradle-online");
+      }
+    }
+    if (debugMap?.startsWith("crown-")) {
+      this.worldFlags.add("quest.launch-cradle-online");
+      this.worldFlags.add("quest.weather-record-recovered");
+      this.worldFlags.add("village.skyglass-relay.visited");
+      if (debugMap === "crown-sanctum") {
+        for (const flag of ["crown.foundation-read", "crown.evacuation-read", "crown.override-read", "crown.order-authenticated"]) this.worldFlags.add(flag);
+        synchronizeCentralQuestFlags(this.worldFlags);
       }
     }
     if (debugMap === "stormbreak-ridge" || debugMap?.startsWith("weather-")) {
@@ -644,6 +659,18 @@ export class WorldScene {
 
     const target = this.nearbyInteraction(centerX, centerY);
     if (target) {
+      if (target.kind === "archive-authenticator" && target.dialogueId
+        && !this.worldFlags.has(target.flag)
+        && (!target.requiredFlag || this.worldFlags.has(target.requiredFlag))) {
+        // Commit only when the supported order is accepted. Rejected dialogue
+        // choices cancel this callback, leaving the puzzle safely retryable.
+        this.dialogue.start(target.dialogueId, () => {
+          const outcome = resolveInteraction(target, this.inventory, this.worldFlags);
+          synchronizeCentralQuestFlags(this.worldFlags);
+          if (outcome.changed) this.markUnsaved();
+        });
+        return;
+      }
       // A recovered or older village save can contain Nox in the roster while
       // lacking the historical recruitment flag.  The array cares about his
       // actual presence, not that stale bookkeeping detail.

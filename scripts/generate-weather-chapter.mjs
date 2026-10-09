@@ -88,5 +88,6 @@ export async function generateWeatherChapter() {
   for(const [id,map] of [['skyglass-relay',skyglass],['stormbreak-ridge',ridge()],['weather-dome',dome()],['weather-eye',eye()]]) {
     await writeFile(new URL(`${id}.json`,directory),`${JSON.stringify(map,null,2)}\n`);
   }
+  await (await import('./generate-crown-chapter.mjs')).generateCrownChapter();
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href)await generateWeatherChapter();
